@@ -48,6 +48,8 @@ class NewsCubit extends Cubit <NewsStates>{
 
 
   void changeIndex(int index){
+    if(index == 1) getScience();
+    if(index == 2) getSports();
     currentIndex = index;
     emit(AppChangeBottomNavigationState());
   }
