@@ -2,6 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/shared/bloc_provider.dart';
 
+import 'layout/news_layout.dart';
+
 void main() {
   Bloc.observer = MyBlocObserver();
 
