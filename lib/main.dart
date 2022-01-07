@@ -1,3 +1,6 @@
+
+import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/shared/bloc_provider.dart';
@@ -16,7 +19,7 @@ void main() async{
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CachHelper.init();
-  bool? isDark = CachHelper.getBoolean(key: 'isDark');
+  bool? isDark = CachHelper.getBoolean(key: 'isDark') != null ? CachHelper.getBoolean(key: 'isDark') : false;
   runApp(MyApp(isDark!));
 }
 
@@ -52,3 +55,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
