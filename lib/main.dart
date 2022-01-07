@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/shared/bloc_provider.dart';
@@ -8,6 +7,7 @@ import 'package:news_app/shared/network/local/cach_helper.dart';
 import 'package:news_app/shared/network/remote/dio_helper.dart';
 import 'package:news_app/shared/styles/themes.dart';
 
+import 'layout/cubit/news_cubit.dart';
 import 'layout/news_layout.dart';
 
 void main() async{
@@ -26,8 +26,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create:(BuildContext context) => AppCubit()..changeAppMode(fromShared: isDark),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create:(BuildContext context) => AppCubit()..changeAppMode(fromShared: isDark),
+        ),
+        BlocProvider(
+          create:(context) => NewsCubit()..getBusiness(),
+        ),
+      ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state){},
         builder: (context, state){
@@ -43,7 +50,5 @@ class MyApp extends StatelessWidget {
         },
       ),
     );
-
-
   }
 }
