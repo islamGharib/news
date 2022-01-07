@@ -2,7 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget articleBuilder(list) =>
+Widget articleBuilder(list,{isSearch = false}) =>
     ConditionalBuilder(
       condition: list.length>0,
       builder: (context) =>
@@ -12,7 +12,7 @@ Widget articleBuilder(list) =>
             separatorBuilder: (context,index) => myDivider(),
             itemCount: list.length,
           ),
-      fallback: (context) =>  Center(child: CircularProgressIndicator(),),
+      fallback: (context) => isSearch? Container() : Center(child: CircularProgressIndicator(),),
     );
 
 void navigateTo(context, widget) => Navigator.push(
